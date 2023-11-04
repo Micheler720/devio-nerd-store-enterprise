@@ -47,11 +47,11 @@ Para executar no Visual Studio, basta seguir os seguinte passos:
 - Coloque todos os projetos para rodar no modelo *SelfHosting* ao invés do *IIS*, pois todas URL's/endpoints configurados estão usando as configurações de *SelfHosting* presentes no *launchSettings.json*;
 - Configurar a solution da aplicação no Visual Studio para iniciar vários projetos, exatamente com os mesmos projetos mostrados na figura abaixo:
 
-    ![Selecionando os projetos para executar no visual studio](./docs/executar-aplicacao-visual-studio-1.PNG)
+    ![Selecionando os projetos para executar no visual studio](./docs/executar-aplicacao-visual-studio-1.png)
 
 - Agora basta startar a aplicação. 
 
-    ![Startar a aplicação com N projetos](./docs/executar-aplicacao-visual-studio-2.PNG)
+    ![Startar a aplicação com N projetos](./docs/executar-aplicacao-visual-studio-2.png)
 <hr>
 
 ## Referências
