@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Grpc.Core.Api" Version="2.31.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Building Blocks\NSE.Core\NSE.Core.csproj" />
+    <ProjectReference Include="..\..\Building Blocks\NSE.WebAPI.Core\NSE.WebAPI.Core.csproj" />
+  </ItemGroup>
+
+</Project>
