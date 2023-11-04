@@ -1,62 +1,66 @@
-# Desenvoldedor.IO - Nerd Store Enterprise
-O objetivo consiste em desenvolver uma plataforma de comércio eletrônico focada no segmento empresarial, seguindo princípios sólidos e abordagens que priorizam a escalabilidade, a segurança,  modelagem do negócio/software e afins.
+# Developer.IO - Nerd Store Enterprise
+The objective is to develop an e-commerce platform focused on the corporate sector, following sound principles and approaches that prioritize scalability, security, business/software modeling, and related aspects.
 
-## Tecnologias Utilizadas
-
+## Technologies Used
 - GRPC
 - .NetCore5
-- SQLServer
-- Mensageria (RabbitMq)
+- SQL Server
+- Messaging (RabbitMQ)
 
-## Visão geral da arquitetura adotada
+## Overview of the Adopted Architecture
 
-A arquitetura proposta para esta aplicação não é um modelo ou template para qualquer outra. Cada aplicação deve ter uma arquitetura específica de acordo com o cenário e nuances do problema do negócio. Sendo assim a arquitetura de cada aplicação deve ser modelada de acordo com cenário e sua especeficidade.
+The architecture proposed for this application is not a model or template for any other. Each application should have a specific architecture according to the scenario and nuances of the business problem. Therefore, the architecture of each application should be modeled according to the scenario and its specificity.
 
-A solução arquitetural adotada para esta aplicação é a **distribuída**, ou também comumente chamada de **monolíto distribuído**. Uma das suas principais características é a divisão da aplicação por [contextos delimitados](https://www.eduardopires.net.br/2016/03/ddd-bounded-context/), consequentemente distribuindo a aplicação em serviços responsáveis, onde cada um cuida de um subdomínio do negócio. A imagem abaixo demonstra a visão geral da arquitetura, contendo 6 contextos delimitados (subdomínios), que são: **Pagamentos, Clientes, Catalogos, Pedidos (core da aplicação), Carrinho e Pagamentos**.
+The architectural solution adopted for this application is **distributed**, or commonly known as **distributed monolith**. One of its main characteristics is the division of the application into bounded contexts, consequently distributing the application into responsible services, where each one handles a subdomain of the business. The image below shows an overview of the architecture, with 6 bounded contexts (subdomains).
+The project is in portuguese, but the bounded contexts are:
 
-![Arquitetura da aplicação](./docs/arquitetura-aplicacao.png)
+- Payments -> Pagamentos
+- Customers -> Clientes
+- Catalogs -> Catalogos
+- Orders  (core of the application) -> Pedidos (core da aplicação)
+- Cart -> Carrinho 
 
-Esta aplicação **não possui uma arquitetura em microserviços, e sim baseada em microserviços**. Isto se dá porque ela abre mão de "regras" que são necessárias em uma aplicação em microserviços. Além disso, aplicações nesse estilo arquitetural são complexas e quase sempre desnecessárias para o contexto do problema de negócio que se deseja resolver.
+![Application Architecture](./docs/arquitetura-aplicacao.png)
 
+This application **does not have a microservices architecture, but is based on microservices**. This is because it dispenses with "rules" that are necessary in a microservices application. In addition, applications in this architectural style are complex and often unnecessary for the context of the business problem you want to solve.
 
-Dessa forma, utilizarmos uma arquitetura em microserviços dependendo da complexidade do negócio pode ser uma *"canhão para matar uma formiga"*.
+Therefore, using a microservices architecture depending on the complexity of the business can be like using a "cannon to kill an ant."
 
-<hr>
+## How to Run?
 
-## Como executar?
+You can run the application from [Visual Studio](https://visualstudio.microsoft.com/pt-br/downloads/)
 
-Podemos executar a aplicação a partir do [Visual Studio](https://visualstudio.microsoft.com/pt-br/downloads/).
+### Running in Visual Studio
+To run in Visual Studio, follow these steps:
 
-### Execução pelo Visual Studio
+- Install the following tools: .Net 5, SQL Server (preferably with SSMS), and Docker.
 
-Para executar no Visual Studio, basta seguir os seguinte passos:
-
-- Instalar as seguintes ferramentas: .Net 5, SQL Server (preferencialmente com o SSMS) e Docker;
-- Criar uma instância do RabbitMQ a partir de um container docker por meio do seguinte comando:
+- Create a RabbitMQ instance from a Docker container using the following command:
 
     ```
     docker run -d --hostname rabbit-host --name rabbit-nerdstore -p 15672:15672 -p 5672:5672 rabbitmq:3-management-alpine
     ```
 
-- Para criação da base de dados existem duas maneiras. Uma delas é executar o script chamado *BackupDbScript.sql* presente no diretório */sql* no banco de dados. Outra forma é rodar as *migrations* presentes no código fonte em cada um dos projetos através do [*PMC (Package Manager Console)*](https://www.learnentityframeworkcore.com/migrations/commands/pmc-commands) do Visual Studio. Caso escolha a segunda maneira basta rodar o seguinte comando em cada projeto no *PMC*:
+- To run the *migrations* in the source code in each of the projects using the Package [*Manager Console (PMC)*](https://www.learnentityframeworkcore.com/migrations/commands/pmc-commands) in Visual Studio. To Run the following command in each project in PMC:
 
     ```
-    Update-Database -Context {nome_contexto} -StartupProject {nome_projeto_startup}
-    ```
+    Update-Database -Context {context_name} -StartupProject {startup_project_name}
+     ```
+- Set all projects to run in the SelfHosting model instead of IIS, as all URL/endpoint configurations are using the SelfHosting settings in launchSettings.json.
 
-- Coloque todos os projetos para rodar no modelo *SelfHosting* ao invés do *IIS*, pois todas URL's/endpoints configurados estão usando as configurações de *SelfHosting* presentes no *launchSettings.json*;
-- Configurar a solution da aplicação no Visual Studio para iniciar vários projetos, exatamente com os mesmos projetos mostrados na figura abaixo:
+- Configure the solution of the application in Visual Studio to start multiple projects, exactly with the same projects shown in the figure below:
 
-    ![Selecionando os projetos para executar no visual studio](./docs/executar-aplicacao-visual-studio-1.png)
+    ![Selecting projects to run in Visual Studio](./docs/executar-aplicacao-visual-studio-1.png)
 
-- Agora basta startar a aplicação. 
+- Now, start the application.
 
-    ![Startar a aplicação com N projetos](./docs/executar-aplicacao-visual-studio-2.png)
+    ![Starting the application with N projects](./docs/executar-aplicacao-visual-studio-2.png)
+
 <hr>
 
-## Referências
+## References
 
-Abaixo estão os links das principais fontes para realização desse projeto, com ênfase no curso da plataforma de cursos [Desenvolvedor.IO](https://desenvolvedor.io/).
+Below are the links to the main sources for the development of this project, with a focus on the courses provided by [Desenvolvedor.IO](https://desenvolvedor.io/).
 
 - [ASP.NET Core Enterprise Applications](https://desenvolvedor.io/curso-online-asp-net-core-enterprise-applications);
 - [Dev-Store Github Repo](https://github.com/desenvolvedor-io/dev-store);
