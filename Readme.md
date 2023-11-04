@@ -1,7 +1,12 @@
 # Desenvoldedor.IO - Nerd Store Enterprise
 O objetivo consiste em desenvolver uma plataforma de comércio eletrônico focada no segmento empresarial, seguindo princípios sólidos e abordagens que priorizam a escalabilidade, a segurança,  modelagem do negócio/software e afins.
 
----
+## Tecnologias Utilizadas
+
+- GRPC
+- .NetCore5
+- SQLServer
+- Mensageria (RabbitMq)
 
 ## Visão geral da arquitetura adotada
 
